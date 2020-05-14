@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.LinkedHashMap;
+
 @SpringBootTest
 @RunWith(SpringRunner.class)
 class SingletonTwoTest {
@@ -35,6 +37,19 @@ class SingletonTwoTest {
                 System.out.println(instance.show());
             }).start();
         }
+
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        String put = map.put("", "");
+        System.gc();
+        System.runFinalization();
+        System.runFinalizersOnExit(true);
+        Runtime.runFinalizersOnExit(true);
+    }
+
+    @Test
+    public void testEnum(){
+        EasySingleton instance = EasySingleton.INSTANCE;
+
     }
 
 }

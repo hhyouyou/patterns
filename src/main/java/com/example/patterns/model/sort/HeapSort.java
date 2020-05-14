@@ -13,8 +13,11 @@ public class HeapSort {
 
         int[] arrays = {9, 2, 5, 1, 3, 2, 9, 5, 2, 1, 8};
 
+        // 1.建堆
         buildMaxHeap(arrays);
         int length = arrays.length;
+        // 2.把第一个堆顶的数字移动到最后，然后对剩下的数字重新维护最大堆
+        // 重复2
         for (int i = length - 1; i > 1; i--) {
             swap(arrays, 0, i);
             maxHeapify(arrays, 0, i);
@@ -24,7 +27,7 @@ public class HeapSort {
 
     }
 
-    // 建堆
+    // 建堆，从中间开始维护最大堆
     public static void buildMaxHeap(int[] arrays) {
         for (int i = (arrays.length / 2) + 1; i >= 0; i--) {
             maxHeapify(arrays, i, arrays.length);

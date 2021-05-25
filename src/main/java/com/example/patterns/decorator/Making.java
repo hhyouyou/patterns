@@ -1,7 +1,5 @@
 package com.example.patterns.decorator;
 
-import com.example.patterns.decorator.*;
-
 /**
  * @author dong jing xi
  * @date 2020/3/1 21:08
@@ -9,8 +7,8 @@ import com.example.patterns.decorator.*;
 public class Making {
 
     public static void main(String[] args) {
-//        coke();
-//        ice1Coke();
+        coke();
+        ice1Coke();
         iceCoke();
         iceSugarXDrink();
     }

@@ -1,6 +1,5 @@
 package com.example.patterns.decorator;
 
-import lombok.Data;
 
 /**
  * @author dong jing xi

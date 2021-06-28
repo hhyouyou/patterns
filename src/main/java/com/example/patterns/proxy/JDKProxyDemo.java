@@ -7,7 +7,7 @@ import java.lang.reflect.Proxy;
  * @author dong jing xi
  * @date 2020/7/15 17:39
  **/
-public class TestClass {
+public class JDKProxyDemo {
 
     public static void main(String[] args) {
         UserRepository userRepository = new UserRepository();

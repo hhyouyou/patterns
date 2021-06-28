@@ -6,7 +6,6 @@ package com.example.patterns.strategy;
  **/
 public class InStockService {
 
-
     public static void main(String[] args) {
         // 选取策略
         PurchaseInStock purchaseInStock = new PurchaseInStock();

@@ -10,17 +10,17 @@ import java.lang.reflect.Proxy;
 public class JDKProxyDemo {
 
     public static void main(String[] args) {
-        UserRepository userRepository = new UserRepository();
+//        UserRepository userRepository = new UserRepository();
+//
+//        userRepository.open();
+//        userRepository.commit();
 
-        userRepository.open();
-        userRepository.commit();
-
-        Class<? extends Transactional> aClass = userRepository.getClass();
-        Transactional transactional = (Transactional) Proxy.newProxyInstance(aClass.getClassLoader(), new Class[]{Transactional.class}, (proxy, method, args1) -> {
+//        Class<? extends Transactional> aClass = userRepository.getClass();
+        Transactional transactional = (Transactional) Proxy.newProxyInstance(Transactional.class.getClassLoader(), new Class[]{Transactional.class}, (proxy, method, args1) -> {
             System.out.println("1");
-            Object result = method.invoke(userRepository, args1);
+//            Object result = method.invoke(userRepository, args1);
             System.out.println("2");
-            return result;
+            return new Object();
         });
 
         transactional.open();

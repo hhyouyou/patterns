@@ -9,8 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import static java.lang.String.format;
-
 
 /**
  *
@@ -20,10 +18,10 @@ public interface Client {
 
     Object execute(Object request, Object options) throws IOException;
 
-    public static class Default implements Client {
+    class Default implements Client {
 
         @Override
-        public Object execute(Object request, Object options) throws IOException {
+        public Object execute(Object request,  Object options) throws IOException {
             HttpURLConnection connection = convertAndSend(request, options);
             return convertResponse(connection, request);
         }
@@ -41,15 +39,9 @@ public interface Client {
             connection.addRequestProperty("Accept", "*/*");
             connection.setChunkedStreamingMode(8196);
             connection.setDoOutput(true);
-            OutputStream out = connection.getOutputStream();
 
-            try {
+            try (OutputStream out = connection.getOutputStream()) {
                 out.write(request.toString().getBytes(StandardCharsets.UTF_8));
-            } finally {
-                try {
-                    out.close();
-                } catch (IOException suppressed) { // NOPMD
-                }
             }
 
             return connection;
@@ -63,13 +55,12 @@ public interface Client {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line;
-            while ((line = bufferedReader.readLine())!=null){
+            while ((line = bufferedReader.readLine()) != null) {
                 System.out.println(line);
             }
 
 
-
-            Map<String, Collection<String>> headers = new LinkedHashMap<String, Collection<String>>();
+            Map<String, Collection<String>> headers = new LinkedHashMap<>();
             for (Map.Entry<String, List<String>> field : connection.getHeaderFields().entrySet()) {
                 // response message
                 if (field.getKey() != null) {
